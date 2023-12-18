@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:recallrave/add_product_viev.dart';
+import 'package:recallrave/add_product_view.dart';
 void main() {
   runApp(const MyApp());
 }

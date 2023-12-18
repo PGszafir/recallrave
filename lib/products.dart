@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:io';
+
 
 class Product {
   final String id;
@@ -20,6 +23,31 @@ class Product {
     required this.manufacturer,
     required this.note,
   });
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "name": name,
+      "image": image,
+      "value": value,
+      "nutriscore": nutriscore,
+      "rating": rating,
+      "manufacturer": manufacturer,
+      "note": note,
+    };
+  }
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'],
+      name: json['name'],
+      image: json['image'],
+      value: json['value'],
+      nutriscore: json['nutriscore'],
+      rating: json['rating'],
+      manufacturer: json['manufacturer'],
+      note: json['note'],
+    );
+  }
 }
 
 
@@ -76,6 +104,22 @@ class ProductView extends StatelessWidget {
 class Products {
   List<Product> _products = [];
 
+  Future<void> loadProductsFromJson(String filePath) async {
+    try {
+      final file = File(filePath);
+      if (await file.exists()) {
+        final String fileContent = await file.readAsString();
+        final Map<String, dynamic> jsonData = json.decode(fileContent);
+
+        if (jsonData.containsKey("products")) {
+          final List<dynamic> productsData = jsonData["products"];
+          _products = productsData.map((data) => Product.fromJson(data)).toList();
+        }
+      }
+    } catch (e) {
+      print('Error loading products from JSON: $e');
+    }
+  }
   void addProduct(Product product) {
     _products.add(product);
   }
