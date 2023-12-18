@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddProductView extends StatefulWidget {
   const AddProductView({Key? key}) : super(key: key);
@@ -9,39 +12,71 @@ class AddProductView extends StatefulWidget {
 
 class _AddProductViewState extends State<AddProductView> {
   TextEditingController nameController = TextEditingController();
-  TextEditingController imageController = TextEditingController();
   TextEditingController valueController = TextEditingController();
   TextEditingController nutriscoreController = TextEditingController();
   TextEditingController ratingController = TextEditingController();
   TextEditingController manufacturerController = TextEditingController();
   TextEditingController noteController = TextEditingController();
 
+  late File? _image = null;
+
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _getImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(
-            "Add Product",
-            style: Theme.of(context).textTheme.headline6!.copyWith(
-              fontSize: 20.0,
-            )
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(
+          "Add Product",
+          style: Theme.of(context).textTheme.headline6!.copyWith(
+            fontSize: 20.0,
           ),
+        ),
       ),
       body: SingleChildScrollView(
-
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
               controller: nameController,
-              decoration: InputDecoration(labelText: 'Product Name', labelStyle: TextStyle(color: Colors.white)),
+              decoration: InputDecoration(
+                labelText: 'Product Name',
+                labelStyle: TextStyle(color: Colors.white),
+              ),
             ),
-            TextField(
-              controller: imageController,
-              decoration: InputDecoration(labelText: 'Image URL', labelStyle: TextStyle(color: Colors.white)),// to replace with camera or gallery chose
+            GestureDetector(
+              onTap: _getImage,
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                ),
+                child: _image != null
+                    ? Image.file(
+                  _image!,
+                  height: 100.0,
+                  width: 100.0,
+                  fit: BoxFit.cover,
+                )
+                    : Icon(
+                  Icons.add_a_photo,
+                  size: 50.0,
+                  color: Colors.white,
+                ),
+              ),
             ),
+            SizedBox(height: 16.0),
             TextField(
               controller: valueController,
               decoration: InputDecoration(labelText: 'Product Value', labelStyle: TextStyle(color: Colors.white)),
@@ -64,14 +99,13 @@ class _AddProductViewState extends State<AddProductView> {
               controller: noteController,
               decoration: InputDecoration(labelText: 'Note', labelStyle: TextStyle(color: Colors.white)),
             ),
-            SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 addProduct();
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.grey[400], // Background color
-                onPrimary: Colors.black, // Text color
+                primary: Colors.grey[400],
+                onPrimary: Colors.black,
               ),
               child: Text('Add Product'),
             ),
@@ -84,7 +118,7 @@ class _AddProductViewState extends State<AddProductView> {
   void addProduct() {
     // Validate the data before adding the product
     if (nameController.text.isEmpty ||
-        imageController.text.isEmpty ||
+        //imageController.text.isEmpty ||
         valueController.text.isEmpty ||
         nutriscoreController.text.isEmpty ||
         ratingController.text.isEmpty ||
@@ -97,7 +131,7 @@ class _AddProductViewState extends State<AddProductView> {
     Map<String, dynamic> newProduct = {
       "product": {
         "name": nameController.text,
-        "image": imageController.text,
+        "image": _image?.path,
         "value": double.parse(valueController.text),
         "nutriscore": nutriscoreController.text,
         "rating": int.parse(ratingController.text),
