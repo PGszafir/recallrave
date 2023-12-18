@@ -20,9 +20,11 @@ class _AddProductViewState extends State<AddProductView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Product'),
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text("Add Product"),
       ),
       body: SingleChildScrollView(
+
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

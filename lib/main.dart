@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Center(
-          child: Text(widget.title),
+          child: Text(widget.title),// add style: argument
         )
       ),
       body: SingleChildScrollView(
