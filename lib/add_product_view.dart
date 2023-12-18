@@ -36,33 +36,33 @@ class _AddProductViewState extends State<AddProductView> {
           children: <Widget>[
             TextField(
               controller: nameController,
-              decoration: InputDecoration(labelText: 'Product Name'),
+              decoration: InputDecoration(labelText: 'Product Name', labelStyle: TextStyle(color: Colors.white)),
             ),
             TextField(
               controller: imageController,
-              decoration: InputDecoration(labelText: 'Image URL'),// to replace with camera or gallery chose
+              decoration: InputDecoration(labelText: 'Image URL', labelStyle: TextStyle(color: Colors.white)),// to replace with camera or gallery chose
             ),
             TextField(
               controller: valueController,
-              decoration: InputDecoration(labelText: 'Product Value'),
+              decoration: InputDecoration(labelText: 'Product Value', labelStyle: TextStyle(color: Colors.white)),
             ),
             TextField(
               controller: nutriscoreController,
-              decoration: InputDecoration(labelText: 'Nutriscore'),// to upgrade add scanning option
+              decoration: InputDecoration(labelText: 'Nutriscore', labelStyle: TextStyle(color: Colors.white)),// to upgrade add scanning option
             ),
             TextField(
               controller: ratingController,
               style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(labelText: 'Rating'),// replace with numbers input
+              decoration: InputDecoration(labelText: 'Rating', labelStyle: TextStyle(color: Colors.white)),// replace with numbers input
             ),
             TextField(
               controller: manufacturerController,
               style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(labelText: 'Manufacturer'),
+              decoration: InputDecoration(labelText: 'Manufacturer', labelStyle: TextStyle(color: Colors.white)),
             ),
             TextField(
               controller: noteController,
-              decoration: InputDecoration(labelText: 'Note'),
+              decoration: InputDecoration(labelText: 'Note', labelStyle: TextStyle(color: Colors.white)),
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
