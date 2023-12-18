@@ -79,15 +79,24 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: Colors.grey[400], // Light grey color for the frame background
-                  borderRadius: BorderRadius.circular(8.0), // Optional: add rounded corners
+                  color: Colors.grey[400], // Jasnoszary kolor dla tła ramki
+                  borderRadius: BorderRadius.circular(8.0), // Opcjonalnie: dodaj zaokrąglone rogi
                 ),
-                child: Text(
-                  "Aplikacja do gromadzenia wspomnień o produktach, tych, które Cię zachwyciły i tych, które nie przypadły Ci do gustu...",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.black,
-                  ),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/bar_split.png',
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(height: 16.0), // Opcjonalne: Dodaj odstęp między obrazem a tekstem
+                    Text(
+                      "Aplikacja do gromadzenia wspomnień o produktach, tych, które Cię zachwyciły i tych, które nie przypadły Ci do gustu...",
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
