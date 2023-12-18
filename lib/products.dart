@@ -75,7 +75,7 @@ class ProductView extends StatelessWidget {
               height: 100,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(product.image),// to repair
+                  image: NetworkImage(product.image),// add reali image of product
                   fit: BoxFit.cover,
                 ),
               ),
@@ -134,6 +134,11 @@ class Products {
 
   Product getProductByName(String name) {
     return _products.firstWhere((product) => product.name == name, orElse: () => throw Exception('Product not found'));
+  }
+
+  List<Product> getProductsBySearchKey(String searchKey) {
+    searchKey = searchKey.trim().toLowerCase();
+    return _products.where((product) => product.name.toLowerCase().contains(searchKey)).toList();
   }
 
   List<Product> getProductsByRating(int rating) {

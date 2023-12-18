@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:recallrave/add_product_view.dart';
+import 'package:recallrave/products.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -60,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          //children: myProductView,
           children: <Widget>[
             for (final product in products)// iterate for product list and add product viev
               ListTile(// replace this with the product viev

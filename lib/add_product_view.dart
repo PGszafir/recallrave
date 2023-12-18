@@ -96,6 +96,7 @@ class _AddProductViewState extends State<AddProductView> {
     };
 
     // Add the new product to the list and save it to a json file
+    // use Products.addProduct
     print('New Product: $newProduct');
 
     // navigate back to the previous screen
