@@ -23,7 +23,9 @@ class _AddProductViewState extends State<AddProductView> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(
             "Add Product",
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.headline6!.copyWith(
+              fontSize: 20.0,
+            )
           ),
       ),
       body: SingleChildScrollView(

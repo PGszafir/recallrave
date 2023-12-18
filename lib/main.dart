@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   static const TextStyle appBarTextStyle = TextStyle(
-    fontSize: 18.0,
+    fontSize: 26.0,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
+    color: Colors.black,
     // Dodaj więcej stylów według potrzeb
   );
 
@@ -64,15 +64,26 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Colors.grey,
         title: Center(
-          child: Text(widget.title, style: MyApp.appBarTextStyle),// add style: argument
-        )
+          child: Text(widget.title, style: MyApp.appBarTextStyle),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            for (final product in products)// iterate for product list and add product viev
-              ListTile(// replace this with the product viev
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                "Aplikacja do gromadzenia wspomnień o produktach, tych, które Cię zachwyciły i tych, które nie przypadły Ci do gustu...",
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.black, // You can customize the text color
+                ),
+              ),
+            ),
+            for (final product in products) // iterate for product list and add product view
+              ListTile(
+                // replace this with the product view
                 title: Text(product['name']),
                 subtitle: Text(product['manufacturer']),
                 leading: Image.asset(product['image']),
