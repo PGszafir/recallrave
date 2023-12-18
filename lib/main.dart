@@ -9,6 +9,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static const TextStyle appBarTextStyle = TextStyle(
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    // Dodaj więcej stylów według potrzeb
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +23,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
+        textTheme: TextTheme(
+          headline6: appBarTextStyle,
+        ),
       ),
       home: const MyHomePage(title: 'RecallRave'),
     );
@@ -54,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Center(
-          child: Text(widget.title),// add style: argument
+          child: Text(widget.title, style: MyApp.appBarTextStyle),// add style: argument
         )
       ),
       body: SingleChildScrollView(
