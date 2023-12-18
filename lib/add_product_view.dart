@@ -52,10 +52,12 @@ class _AddProductViewState extends State<AddProductView> {
             ),
             TextField(
               controller: ratingController,
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(labelText: 'Rating'),// replace with numbers input
             ),
             TextField(
               controller: manufacturerController,
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(labelText: 'Manufacturer'),
             ),
             TextField(
@@ -67,6 +69,10 @@ class _AddProductViewState extends State<AddProductView> {
               onPressed: () {
                 addProduct();
               },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.grey[400], // Background color
+                onPrimary: Colors.black, // Text color
+              ),
               child: Text('Add Product'),
             ),
           ],

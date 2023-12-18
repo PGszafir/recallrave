@@ -21,7 +21,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RecallRave',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.grey, // Use grey as the background
+          backgroundColor: Colors.grey[600], // Use grey as the primary color
+        ),
         useMaterial3: true,
         textTheme: TextTheme(
           headline6: appBarTextStyle,
@@ -73,11 +76,18 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
-                "Aplikacja do gromadzenia wspomnień o produktach, tych, które Cię zachwyciły i tych, które nie przypadły Ci do gustu...",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Colors.black, // You can customize the text color
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.grey[400], // Light grey color for the frame background
+                  borderRadius: BorderRadius.circular(8.0), // Optional: add rounded corners
+                ),
+                child: Text(
+                  "Aplikacja do gromadzenia wspomnień o produktach, tych, które Cię zachwyciły i tych, które nie przypadły Ci do gustu...",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
