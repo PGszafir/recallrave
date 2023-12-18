@@ -20,8 +20,11 @@ class _AddProductViewState extends State<AddProductView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("Add Product"),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          title: Text(
+            "Add Product",
+            style: Theme.of(context).textTheme.headline6,
+          ),
       ),
       body: SingleChildScrollView(
 

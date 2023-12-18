@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RecallRave',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey),
         useMaterial3: true,
         textTheme: TextTheme(
           headline6: appBarTextStyle,
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.grey,
         title: Center(
           child: Text(widget.title, style: MyApp.appBarTextStyle),// add style: argument
         )
