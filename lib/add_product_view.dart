@@ -14,7 +14,7 @@ class _AddProductViewState extends State<AddProductView> {
   TextEditingController nameController = TextEditingController();
   TextEditingController valueController = TextEditingController();
   TextEditingController nutriscoreController = TextEditingController();
-  TextEditingController ratingController = TextEditingController();
+  TextEditingController ratingController = TextEditingController(); // Added this line
   TextEditingController manufacturerController = TextEditingController();
   TextEditingController noteController = TextEditingController();
 
@@ -52,7 +52,8 @@ class _AddProductViewState extends State<AddProductView> {
             TextField(
               controller: nameController,
               style: TextStyle(color: Colors.grey.shade300),
-              decoration: InputDecoration(labelText: 'Product name',
+              decoration: InputDecoration(
+                labelText: 'Product name',
                 labelStyle: TextStyle(color: Colors.grey.shade300),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade300),
@@ -95,15 +96,15 @@ class _AddProductViewState extends State<AddProductView> {
                       color: Colors.grey.shade300,
                     ),
                   ),
-                  SizedBox(height: 8.0), // Add some spacing between the icon and the next widget
-                  // Add other widgets as needed
+                  SizedBox(height: 8.0),
                 ],
               ),
             ),
             TextField(
               controller: valueController,
               style: TextStyle(color: Colors.grey.shade300),
-              decoration: InputDecoration(labelText: 'Product value',
+              decoration: InputDecoration(
+                labelText: 'Product value',
                 labelStyle: TextStyle(color: Colors.grey.shade300),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade300),
@@ -116,7 +117,8 @@ class _AddProductViewState extends State<AddProductView> {
             TextField(
               controller: nutriscoreController, // to upgrade add scanning option
               style: TextStyle(color: Colors.grey.shade300),
-              decoration: InputDecoration(labelText: 'Nutriscore',
+              decoration: InputDecoration(
+                labelText: 'Nutriscore',
                 labelStyle: TextStyle(color: Colors.grey.shade300),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade300),
@@ -126,23 +128,67 @@ class _AddProductViewState extends State<AddProductView> {
                 ),
               ),
             ),
-            TextField(
-              controller: ratingController,
-              style: TextStyle(color: Colors.grey.shade300),
-              decoration: InputDecoration(labelText: 'Rating',
-                labelStyle: TextStyle(color: Colors.grey.shade300),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+            SizedBox(height: 22.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Rating',
+                  style: TextStyle(
+                    color: Colors.grey.shade300,
+                    fontSize: 16.0,
+                  ),
                 ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+                SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    10,
+                        (index) => GestureDetector(
+                      onTap: () {
+                        // Handle the rating selection (you can update a variable or call a function)
+                        print('Selected Rating: ${index + 1}');
+                        setState(() {
+                          ratingController.text = (index + 1).toString();
+                        });
+                      },
+                      child: Container(
+                        width: 35.0,
+                        height: 35.0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: ratingController.text.isNotEmpty &&
+                              int.parse(ratingController.text) ==
+                                  index + 1
+                              ? Colors.grey.shade200
+                              : Colors.grey.shade500,
+                        ),
+                        child: Center(
+                          child: Text(
+                            '${index + 1}',
+                            style: TextStyle(
+                              color: ratingController.text.isNotEmpty &&
+                                  int.parse(ratingController.text) == index + 1
+                                  ? Colors.black
+                                  : Colors.grey.shade300,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             TextField(
               controller: manufacturerController,
               style: TextStyle(color: Colors.grey.shade300),
-              decoration: InputDecoration(labelText: 'Manufacturer',
+              decoration: InputDecoration(
+                labelText: 'Manufacturer',
                 labelStyle: TextStyle(color: Colors.grey.shade300),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade300),
@@ -155,7 +201,8 @@ class _AddProductViewState extends State<AddProductView> {
             TextField(
               controller: noteController,
               style: TextStyle(color: Colors.grey.shade300),
-              decoration: InputDecoration(labelText: 'Note',
+              decoration: InputDecoration(
+                labelText: 'Note',
                 labelStyle: TextStyle(color: Colors.grey.shade300),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade300),
@@ -185,7 +232,6 @@ class _AddProductViewState extends State<AddProductView> {
   void addProduct() {
     // Validate the data before adding the product
     if (nameController.text.isEmpty ||
-        //imageController.text.isEmpty ||
         valueController.text.isEmpty ||
         nutriscoreController.text.isEmpty ||
         ratingController.text.isEmpty ||
