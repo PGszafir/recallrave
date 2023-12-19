@@ -114,19 +114,63 @@ class _AddProductViewState extends State<AddProductView> {
                 ),
               ),
             ),
-            TextField(
-              controller: nutriscoreController, // to upgrade add scanning option
-              style: TextStyle(color: Colors.grey.shade300),
-              decoration: InputDecoration(
-                labelText: 'Nutriscore',
-                labelStyle: TextStyle(color: Colors.grey.shade300),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+            SizedBox(height: 22.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Nutriscore',
+                  style: TextStyle(
+                    color: Colors.grey.shade300,
+                    fontSize: 16.0,
+                  ),
                 ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+                SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    5,
+                        (index) => GestureDetector(
+                      onTap: () {
+                        // Handle the Nutriscore selection (you can update a variable or call a function)
+                        final nutriscore = String.fromCharCode('A'.codeUnitAt(0) + index);
+                        print('Selected Nutriscore: $nutriscore');
+                        setState(() {
+                          nutriscoreController.text = nutriscore;
+                        });
+                      },
+                      child: Container(
+                        width: 80.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: nutriscoreController.text.isNotEmpty &&
+                              nutriscoreController.text ==
+                                  String.fromCharCode('A'.codeUnitAt(0) + index)
+                              ? Colors.grey.shade200
+                              : Colors.grey.shade500,
+                        ),
+                        child: Center(
+                          child: Text(
+                            String.fromCharCode('A'.codeUnitAt(0) + index),
+                            style: TextStyle(
+                              color: nutriscoreController.text.isNotEmpty &&
+                                  nutriscoreController.text ==
+                                      String.fromCharCode('A'.codeUnitAt(0) + index)
+                                  ? Colors.black
+                                  : Colors.grey.shade300,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             SizedBox(height: 22.0),
             Column(
@@ -153,8 +197,8 @@ class _AddProductViewState extends State<AddProductView> {
                         });
                       },
                       child: Container(
-                        width: 35.0,
-                        height: 35.0,
+                        width: 40.0,
+                        height: 40.0,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.grey.shade300,
