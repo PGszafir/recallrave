@@ -130,39 +130,45 @@ class _AddProductViewState extends State<AddProductView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
                     5,
-                        (index) => GestureDetector(
-                      onTap: () {
-                        // Handle the Nutriscore selection (you can update a variable or call a function)
-                        final nutriscore = String.fromCharCode('A'.codeUnitAt(0) + index);
-                        print('Selected Nutriscore: $nutriscore');
-                        setState(() {
-                          nutriscoreController.text = nutriscore;
-                        });
-                      },
-                      child: Container(
-                        width: 80.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1.0,
+                        (index) => Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Handle the Nutriscore selection (you can update a variable or call a function)
+                          final nutriscore = String.fromCharCode('A'.codeUnitAt(0) + index);
+                          print('Selected Nutriscore: $nutriscore');
+                          setState(() {
+                            nutriscoreController.text = nutriscore;
+                          });
+                        },
+                        child: Container(
+                          height: 40.0,
+                          margin: (index == 0)
+                              ? EdgeInsets.only(right: 4.0) // No left margin for the first tile
+                              : (index == 4)
+                              ? EdgeInsets.only(left: 4.0) // No right margin for the last tile
+                              : EdgeInsets.symmetric(horizontal: 4.0), // Margins for middle tiles
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey.shade300,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                            color: nutriscoreController.text.isNotEmpty &&
+                                nutriscoreController.text ==
+                                    String.fromCharCode('A'.codeUnitAt(0) + index)
+                                ? Colors.grey.shade200
+                                : Colors.grey.shade500,
                           ),
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: nutriscoreController.text.isNotEmpty &&
-                              nutriscoreController.text ==
-                                  String.fromCharCode('A'.codeUnitAt(0) + index)
-                              ? Colors.grey.shade200
-                              : Colors.grey.shade500,
-                        ),
-                        child: Center(
-                          child: Text(
-                            String.fromCharCode('A'.codeUnitAt(0) + index),
-                            style: TextStyle(
-                              color: nutriscoreController.text.isNotEmpty &&
-                                  nutriscoreController.text ==
-                                      String.fromCharCode('A'.codeUnitAt(0) + index)
-                                  ? Colors.black
-                                  : Colors.grey.shade300,
+                          child: Center(
+                            child: Text(
+                              String.fromCharCode('A'.codeUnitAt(0) + index),
+                              style: TextStyle(
+                                color: nutriscoreController.text.isNotEmpty &&
+                                    nutriscoreController.text ==
+                                        String.fromCharCode('A'.codeUnitAt(0) + index)
+                                    ? Colors.black
+                                    : Colors.grey.shade300,
+                              ),
                             ),
                           ),
                         ),
@@ -188,37 +194,42 @@ class _AddProductViewState extends State<AddProductView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
                     10,
-                        (index) => GestureDetector(
-                      onTap: () {
-                        // Handle the rating selection (you can update a variable or call a function)
-                        print('Selected Rating: ${index + 1}');
-                        setState(() {
-                          ratingController.text = (index + 1).toString();
-                        });
-                      },
-                      child: Container(
-                        width: 40.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.shade300,
-                            width: 1.0,
+                        (index) => Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Handle the rating selection (you can update a variable or call a function)
+                          print('Selected Rating: ${index + 1}');
+                          setState(() {
+                            ratingController.text = (index + 1).toString();
+                          });
+                        },
+                        child: Container(
+                          height: 40.0,
+                          margin: (index == 0)
+                              ? EdgeInsets.only(right: 4.0) // No left margin for the first tile
+                              : (index == 9)
+                              ? EdgeInsets.only(left: 4.0) // No right margin for the last tile
+                              : EdgeInsets.symmetric(horizontal: 4.0), // Margins for middle tiles
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey.shade300,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                            color: ratingController.text.isNotEmpty &&
+                                int.parse(ratingController.text) == index + 1
+                                ? Colors.grey.shade200
+                                : Colors.grey.shade500,
                           ),
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: ratingController.text.isNotEmpty &&
-                              int.parse(ratingController.text) ==
-                                  index + 1
-                              ? Colors.grey.shade200
-                              : Colors.grey.shade500,
-                        ),
-                        child: Center(
-                          child: Text(
-                            '${index + 1}',
-                            style: TextStyle(
-                              color: ratingController.text.isNotEmpty &&
-                                  int.parse(ratingController.text) == index + 1
-                                  ? Colors.black
-                                  : Colors.grey.shade300,
+                          child: Center(
+                            child: Text(
+                              '${index + 1}',
+                              style: TextStyle(
+                                color: ratingController.text.isNotEmpty &&
+                                    int.parse(ratingController.text) == index + 1
+                                    ? Colors.black
+                                    : Colors.grey.shade300,
+                              ),
                             ),
                           ),
                         ),
