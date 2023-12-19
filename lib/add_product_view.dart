@@ -102,6 +102,7 @@ class _AddProductViewState extends State<AddProductView> {
             ),
             TextField(
               controller: valueController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true), // set numeric input
               style: TextStyle(color: Colors.grey.shade300),
               decoration: InputDecoration(
                 labelText: 'Product value',
