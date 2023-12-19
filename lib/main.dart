@@ -11,13 +11,26 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static const TextStyle appBarTextStyle = TextStyle(
+    fontSize: 26.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+    // Dodaj więcej stylów według potrzeb
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'RecallRave',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.grey, // Use grey as the background
+          backgroundColor: Colors.grey[600], // Use grey as the primary color
+        ),
         useMaterial3: true,
+        textTheme: TextTheme(
+          headline6: appBarTextStyle,
+        ),
       ),
       home: const MyHomePage(title: 'RecallRave'),
     );
@@ -54,18 +67,45 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.grey,
         title: Center(
-          child: Text(widget.title),// add style: argument
-        )
+          child: Text(widget.title, style: MyApp.appBarTextStyle),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           //children: myProductView,
           children: <Widget>[
-            for (final product in products)// iterate for product list and add product viev
-              ListTile(// replace this with the product viev
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.grey[400], // Jasnoszary kolor dla tła ramki
+                  borderRadius: BorderRadius.circular(8.0), // Opcjonalnie: dodaj zaokrąglone rogi
+                ),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/bar_split.png',
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(height: 16.0), // Opcjonalne: Dodaj odstęp między obrazem a tekstem
+                    Text(
+                      "Aplikacja do gromadzenia wspomnień o produktach, tych, które Cię zachwyciły i tych, które nie przypadły Ci do gustu...",
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            for (final product in products) // iterate for product list and add product view
+              ListTile(
+                // replace this with the product view
                 title: Text(product['name']),
                 subtitle: Text(product['manufacturer']),
                 leading: Image.asset(product['image']),
