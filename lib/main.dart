@@ -93,7 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: 16.0), // Opcjonalne: Dodaj odstęp między obrazem a tekstem
                     Text(
-                      "Aplikacja do gromadzenia wspomnień o produktach, tych, które Cię zachwyciły i tych, które nie przypadły Ci do gustu...",
+                      "App for collecting memories about products, those that delighted you and those you didn't like...",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Colors.black,

@@ -51,60 +51,127 @@ class _AddProductViewState extends State<AddProductView> {
           children: <Widget>[
             TextField(
               controller: nameController,
-              decoration: InputDecoration(
-                labelText: 'Product Name',
-                labelStyle: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.grey.shade300),
+              decoration: InputDecoration(labelText: 'Product name',
+                labelStyle: TextStyle(color: Colors.grey.shade300),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
               ),
             ),
+            SizedBox(height: 22.0),
+            Text(
+              'Photo',
+              style: TextStyle(
+                color: Colors.grey.shade300,
+                fontSize: 16.0,
+              ),
+            ),
+            SizedBox(height: 4.0),
             GestureDetector(
               onTap: _getImage,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    height: 100.0,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: _image != null
+                        ? Image.file(
+                      _image!,
+                      width: double.infinity,
+                      height: 100.0,
+                      fit: BoxFit.cover,
+                    )
+                        : Icon(
+                      Icons.add_a_photo,
+                      size: 100.0,
+                      color: Colors.grey.shade300,
+                    ),
+                  ),
+                  SizedBox(height: 8.0), // Add some spacing between the icon and the next widget
+                  // Add other widgets as needed
+                ],
+              ),
+            ),
+            TextField(
+              controller: valueController,
+              style: TextStyle(color: Colors.grey.shade300),
+              decoration: InputDecoration(labelText: 'Product value',
+                labelStyle: TextStyle(color: Colors.grey.shade300),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
                 ),
-                child: _image != null
-                    ? Image.file(
-                  _image!,
-                  height: 100.0,
-                  width: 100.0,
-                  fit: BoxFit.cover,
-                )
-                    : Icon(
-                  Icons.add_a_photo,
-                  size: 50.0,
-                  color: Colors.white,
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
             TextField(
-              controller: valueController,
-              decoration: InputDecoration(labelText: 'Product Value', labelStyle: TextStyle(color: Colors.white)),
-            ),
-            TextField(
-              controller: nutriscoreController,
-              decoration: InputDecoration(labelText: 'Nutriscore', labelStyle: TextStyle(color: Colors.white)),// to upgrade add scanning option
+              controller: nutriscoreController, // to upgrade add scanning option
+              style: TextStyle(color: Colors.grey.shade300),
+              decoration: InputDecoration(labelText: 'Nutriscore',
+                labelStyle: TextStyle(color: Colors.grey.shade300),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+              ),
             ),
             TextField(
               controller: ratingController,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(labelText: 'Rating', labelStyle: TextStyle(color: Colors.white)),// replace with numbers input
+              style: TextStyle(color: Colors.grey.shade300),
+              decoration: InputDecoration(labelText: 'Rating',
+                labelStyle: TextStyle(color: Colors.grey.shade300),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+              ),
             ),
             TextField(
               controller: manufacturerController,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(labelText: 'Manufacturer', labelStyle: TextStyle(color: Colors.white)),
+              style: TextStyle(color: Colors.grey.shade300),
+              decoration: InputDecoration(labelText: 'Manufacturer',
+                labelStyle: TextStyle(color: Colors.grey.shade300),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+              ),
             ),
             TextField(
               controller: noteController,
-              decoration: InputDecoration(labelText: 'Note', labelStyle: TextStyle(color: Colors.white)),
+              style: TextStyle(color: Colors.grey.shade300),
+              decoration: InputDecoration(labelText: 'Note',
+                labelStyle: TextStyle(color: Colors.grey.shade300),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+              ),
             ),
+            SizedBox(height: 22.0),
             ElevatedButton(
               onPressed: () {
                 addProduct();
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.grey[400],
+                primary: Colors.grey.shade300,
                 onPrimary: Colors.black,
               ),
               child: Text('Add Product'),
