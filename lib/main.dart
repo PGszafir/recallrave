@@ -79,28 +79,32 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.grey[400], // Jasnoszary kolor dla tła ramki
-                  borderRadius: BorderRadius.circular(8.0), // Opcjonalnie: dodaj zaokrąglone rogi
-                ),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/images/bar_split.png',
-                      fit: BoxFit.fill,
-                    ),
-                    SizedBox(height: 16.0), // Opcjonalne: Dodaj odstęp między obrazem a tekstem
-                    Text(
-                      "App for collecting memories about products, those that delighted you and those you didn't like...",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.black,
+              child: Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9, // 90% szerokości ekranu
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400], // Jasnoszary kolor dla tła ramki
+                    borderRadius: BorderRadius.circular(8.0), // Opcjonalnie: dodaj zaokrąglone rogi
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Wyśrodkuj treść w pionie
+                    children: [
+                      Image.asset(
+                        'assets/images/bar_split.png',
+                        fit: BoxFit.fill,
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 16.0), // Opcjonalne: Dodaj odstęp między obrazem a tekstem
+                      Text(
+                        "App for collecting memories about products, those that delighted you and those you didn't like...",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -128,5 +132,4 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// ad here or in other file product viev
 
