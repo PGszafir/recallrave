@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:recallrave/add_product_view.dart';
 import 'package:recallrave/products.dart';
 import 'package:recallrave/product_view.dart';
+import 'package:recallrave/search_component.dart';
 
 void main() async{
   runApp(const MyApp());
@@ -107,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            SearchComponent(),
             ProductTileView( // testowy obiekt czy wogóle się wyświetla
               id: 1,
               name: "wino białe",
