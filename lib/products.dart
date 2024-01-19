@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:path_provider/path_provider.dart';
+
 
 class Product {
-  final String id;
+  final int id;
   final String name;
   final String image;
   final double value;
@@ -104,28 +106,59 @@ class ProductView extends StatelessWidget {
 class Products {
   List<Product> _products = [];
 
-  Future<void> loadProductsFromJson(String filePath) async {
-    try {
-      final file = File(filePath);
-      if (await file.exists()) {
-        final String fileContent = await file.readAsString();
-        final Map<String, dynamic> jsonData = json.decode(fileContent);
+  static final Products _singleton = Products._internal();
 
-        if (jsonData.containsKey("products")) {
-          final List<dynamic> productsData = jsonData["products"];
-          _products = productsData.map((data) => Product.fromJson(data)).toList();
-        }
-      }
-    } catch (e) {
-      print('Error loading products from JSON: $e');
+  factory Products(){
+    return _singleton;
+  }
+
+  Products._internal();
+
+  int getListLen(){
+    return _products.length;
+  }
+  Future<String> getPath() async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> getFileRef() async {
+    final path = await getPath();
+    return File('$path/products.json');
+  }
+
+  Future<void> loadProductsFromJson() async {
+    File file = await getFileRef();
+    String contents = await file.readAsString();
+    var jsonResponse = jsonDecode(contents);
+    for (var p in jsonResponse) {
+      Product product = Product(id: int.parse(p['id']),
+          name: p['name'],
+          image: p['image'],
+          value: p['value'],
+          nutriscore: p['nutriscore'],
+          rating: p['rating'],
+          manufacturer: p['manufacturer'],
+          note: p['note']);
+      _products.add(product);
     }
   }
-  void addProduct(Product product) {
+
+  void addProduct(Product product) async {
     _products.add(product);
+    saveListToFile();
+  }
+
+  void saveListToFile() async {
+    final file = await getFileRef();
+    List<Product> tempList = List.from(_products);
+    tempList.map((product) => product.toJson(),).toList();
+    file.writeAsString(json.encode(tempList));
   }
 
   List<Product> getAllProducts() {
-    return List.from(_products);
+    print(_products);
+    return _products;
   }
 
   Product getProductById(String id) {

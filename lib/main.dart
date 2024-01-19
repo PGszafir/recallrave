@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:recallrave/add_product_view.dart';
 import 'package:recallrave/products.dart';
 
-void main() {
+void main() async{
   runApp(const MyApp());
+  await Products().loadProductsFromJson();
 }
 
 class MyApp extends StatelessWidget {
@@ -48,19 +50,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Map<String, dynamic>> products = [];
+  Products productsList = Products();
 
   @override
   void initState() {
     super.initState();
-    loadProducts();
   }
 
   Future<void> loadProducts() async {
-    final String data =
-    await rootBundle.loadString('assets/products.json');
-    setState(() {
-      products = List<Map<String, dynamic>>.from(json.decode(data)['products']);
-    });
+    Products().loadProductsFromJson();
   }
 
   @override

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'products.dart';
 
 class AddProductView extends StatefulWidget {
   const AddProductView({Key? key}) : super(key: key);
@@ -297,21 +298,22 @@ class _AddProductViewState extends State<AddProductView> {
     }
 
     // Create a new product
-    Map<String, dynamic> newProduct = {
-      "product": {
+    Map<String, dynamic> newProductMap = {
         "name": nameController.text,
         "image": _image?.path,
         "value": double.parse(valueController.text),
         "nutriscore": nutriscoreController.text,
         "rating": int.parse(ratingController.text),
         "manufacturer": manufacturerController.text,
-        "note": noteController.text,
-      }
+        "note": noteController.text
     };
 
     // Add the new product to the list and save it to a json file
     // use Products.addProduct
-    print('New Product: $newProduct');
+    var newId = Products().getListLen();
+    print('New Product: $newProductMap');
+    Product newProduct = Product(id: newId, name: newProductMap['name'], image: "none", value: newProductMap['value'], nutriscore: newProductMap['nutriscore'], rating: newProductMap['rating'], manufacturer: newProductMap['manufacturer'], note: newProductMap['note']);
+    Products().addProduct(newProduct);
 
     // navigate back to the previous screen
     Navigator.pop(context);
