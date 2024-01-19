@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:recallrave/add_product_view.dart';
 import 'package:recallrave/products.dart';
+import 'package:recallrave/product_view.dart';
 
 void main() async{
   runApp(const MyApp());
@@ -82,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: MediaQuery.of(context).size.width * 0.9, // 90% szerokości ekranu
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[400], // Jasnoszary kolor dla tła ramki
+                    color: Colors.grey[300], // Jasnoszary kolor dla tła ramki
                     borderRadius: BorderRadius.circular(8.0), // Opcjonalnie: dodaj zaokrąglone rogi
                   ),
                   child: Column(
@@ -106,12 +107,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            for (final product in products) // iterate for product list and add product view
-              ListTile(
-                // replace this with the product view
-                title: Text(product['name']),
-                subtitle: Text(product['manufacturer']),
-                leading: Image.asset(product['image']),
+            ProductTileView( // testowy obiekt czy wogóle się wyświetla
+              id: 1,
+              name: "wino białe",
+              manufacturer: "jeronimo",
+              image: "assets/assets",
+              value: 10,
+              nutriscore: "A",
+              rating: 3,
+              note: "some note xdd",
+            ),
+            for (final product in products)// do przekazania prawdziwa lista produktów bo to nie działa
+              ProductTileView(
+                id: product['id'],
+                name: product['name'],
+                manufacturer: product['manufacturer'],
+                image: product['image'],
+                value: product['value'],
+                nutriscore: product['nutriscore'],
+                rating: product['rating'],
+                note:product['note'],
               ),
           ],
         ),
@@ -126,7 +141,22 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Open Add Product View',
         child: const Icon(Icons.add),
       ),
-    );
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.grey,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                // button action here dodajcie sobie tutaj bo nie ogarniam jak do końca dać 2 taki pływające przyciski
+              },
+              icon: Icon(Icons.refresh),
+              tooltip: 'refresh Products',
+            ),
+          ],
+        ),
+      ),
+     );
   }
 }
 
