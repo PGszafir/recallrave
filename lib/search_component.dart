@@ -13,19 +13,72 @@ class SearchComponent extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Wpisz wyszukiwane słowo...",
-                border: OutlineInputBorder(),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.0),
+                  bottomLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0),
+                  bottomRight: Radius.circular(10.0),
+                ),
+              ),
+              child: Row(
+                children: [
+                  SizedBox(width: 8.0),
+                  Expanded(
+                    child: TextField(
+                      style: TextStyle(color: Colors.white),
+                      cursorColor: Colors.white,
+                      decoration: InputDecoration(
+                        hintText: "Wpisz wyszukiwane słowo...",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.0),
+                            bottomLeft: Radius.circular(10.0),
+                            topRight: Radius.circular(10.0),
+                            bottomRight: Radius.circular(10.0),
+                          ),
+                          borderSide: BorderSide(color: Colors.transparent),
+                        ),
+                        hintStyle: TextStyle(color: Colors.white),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
           SizedBox(width: 16.0),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
             onPressed: () {
               // Obsługa logiki wyszukiwania
             },
-            child: Text("Szukaj"),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                SizedBox(width: 8.0),
+                Text(
+                  "Szukaj",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
           ),
         ],
       ),
