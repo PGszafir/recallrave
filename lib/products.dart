@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:recallrave/main.dart';
 
 
 class Product {
@@ -132,15 +133,17 @@ class Products {
     String contents = await file.readAsString();
     var jsonResponse = jsonDecode(contents);
     for (var p in jsonResponse) {
-      Product product = Product(id: int.parse(p['id']),
-          name: p['name'],
-          image: p['image'],
-          value: p['value'],
-          nutriscore: p['nutriscore'],
-          rating: p['rating'],
-          manufacturer: p['manufacturer'],
-          note: p['note']);
-      _products.add(product);
+      if(p['id'] >= getListLen()) {
+        Product product = Product(id: p['id'],
+            name: p['name'],
+            image: p['image'],
+            value: p['value'],
+            nutriscore: p['nutriscore'],
+            rating: p['rating'],
+            manufacturer: p['manufacturer'],
+            note: p['note']);
+        _products.add(product);
+      }
     }
   }
 

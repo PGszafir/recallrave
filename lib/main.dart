@@ -51,8 +51,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Map<String, dynamic>> products = [];
   Products productsList = Products();
+  List<Product> products = Products().getAllProducts();
 
   @override
   void initState() {
@@ -109,26 +109,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             SearchComponent(),
-            ProductTileView( // testowy obiekt czy wogóle się wyświetla
-              id: 1,
-              name: "wino białe",
-              manufacturer: "jeronimo",
-              image: "assets/assets",
-              value: 10,
-              nutriscore: "A",
-              rating: 3,
-              note: "some note xdd",
-            ),
             for (final product in products)// do przekazania prawdziwa lista produktów bo to nie działa
               ProductTileView(
-                id: product['id'],
-                name: product['name'],
-                manufacturer: product['manufacturer'],
-                image: product['image'],
-                value: product['value'],
-                nutriscore: product['nutriscore'],
-                rating: product['rating'],
-                note:product['note'],
+                id: product.id,
+                name: product.name,
+                manufacturer: product.manufacturer,
+                image: product.image,
+                value: product.value,
+                nutriscore: product.nutriscore,
+                rating: product.rating,
+                note:product.note,
               ),
           ],
         ),
@@ -150,7 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             IconButton(
               onPressed: () {
+                Products().loadProductsFromJson();
                 // button action here dodajcie sobie tutaj bo nie ogarniam jak do końca dać 2 taki pływające przyciski
+                setState(() {});
               },
               icon: Icon(Icons.refresh),
               tooltip: 'refresh Products',
